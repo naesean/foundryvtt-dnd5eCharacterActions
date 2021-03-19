@@ -53,6 +53,8 @@ async function addActionsTab(
   actionsTabHtml.find('.item .item-image').click((event) => app._onItemRoll(event));
   // @ts-ignore
   actionsTabHtml.find('.item .item-name.rollable h4').click((event) => app._onItemSummary(event));
+  // @ts-ignore
+  actionsTabHtml.find('.item .item-recharge').click((event) => app._onItemRecharge(event));
 }
 
 async function renderActionsList(actorData: Actor5eCharacter, appId?: number) {
@@ -114,4 +116,8 @@ Hooks.on('renderActorSheet5e', (app, html, data) => {
   }
 
   addActionsTab(app, html, data);
+});
+
+Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
+  registerPackageDebugFlag(MODULE_ID);
 });
